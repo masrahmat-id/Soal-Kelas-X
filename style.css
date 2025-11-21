@@ -1,95 +1,175 @@
+/* ==================================== */
+/* GLOBAL STYLES & LAYOUT */
+/* ==================================== */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef; /* Abu-abu muda untuk latar belakang */
+    color: #343a40;
     line-height: 1.6;
     margin: 0;
-    padding: 0;
+    padding: 40px 20px;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    min-height: 100vh; /* Memastikan body mengisi seluruh viewport */
 }
 
 .container {
-    background: #fff;
+    background: #ffffff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
     width: 100%;
 }
 
-h1 {
-    color: #007bff;
+h1, h2 {
+    color: #007bff; /* Biru Primer */
     text-align: center;
     margin-bottom: 20px;
 }
 
+hr {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #dee2e6; /* Garis pemisah yang tipis */
+}
+
+/* Utilitas */
+.hidden {
+    display: none !important;
+}
+
+/* ==================================== */
+/* FORM INPUT STYLES (Berlaku untuk Data Diri & Kuis) */
+/* ==================================== */
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* ==================================== */
+/* QUESTION & OPTION STYLES */
+/* ==================================== */
+
+#info-display {
+    text-align: center;
+    font-size: 1.1em;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 5px solid #007bff;
+    margin-bottom: 30px;
+}
+
 .question-block {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Latar belakang soal sedikit berbeda */
 }
 
 .question-block p {
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
 }
 
 .option-group label {
-    display: block;
-    margin: 5px 0;
+    display: flex; /* Mengatur radio button dan teks agar sejajar */
+    align-items: center;
+    margin: 8px 0;
+    padding: 8px 10px;
+    border-radius: 4px;
     cursor: pointer;
+    font-weight: normal; /* Menghilangkan bold pada opsi */
+    transition: background-color 0.2s;
+}
+
+.option-group label:hover {
+    background-color: #e9ecef; /* Highlight saat kursor di atas opsi */
 }
 
 .option-group input[type="radio"] {
     margin-right: 10px;
+    /* Reset lebar default agar tidak mengganggu flex */
+    width: auto; 
 }
 
-hr {
-    margin: 25px 0;
-    border: 0;
-    border-top: 1px solid #eee;
-}
 
-input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+/* ==================================== */
+/* BUTTON STYLES */
+/* ==================================== */
 
-button#submit-button {
+button {
     display: block;
     width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 25px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+/* Tombol Masuk/Start */
+button#start-button {
+    background-color: #007bff;
+    color: white;
+}
+
+button#start-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Tombol Kirim Jawaban */
+button#submit-button {
+    background-color: #28a745; /* Hijau Sukses */
+    color: white;
 }
 
 button#submit-button:hover {
-    background-color: #218838;
+    background-color: #1e7e34;
+    transform: translateY(-1px);
 }
 
-.hidden {
-    display: none;
-}
+/* ==================================== */
+/* MESSAGE STYLES */
+/* ==================================== */
 
 #result-message {
     text-align: center;
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #d4edda;
-    color: #155724;
-    border-color: #c3e6cb;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #d4edda; /* Latar belakang hijau muda */
+    color: #155724; /* Teks hijau gelap */
+    border: 1px solid #c3e6cb;
+    font-weight: bold;
 }
