@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Kuis - Soal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Uji Pengetahuan Umum</h2>
+        <p id="info-display">Data Anda: ...</p>
+        <hr>
+
+        <form id="quiz-form" action="YOUR_FORMSPREE_ENDPOINT" method="POST">
+            
+            <div id="quiz-container">
+                </div>
+
+            <hr>
+
+            <label for="user-email">Email Anda (untuk notifikasi pengirim):</label>
+            <input type="email" id="user-email" name="_replyto" placeholder="contoh@email.com" required>
+            
+            <input type="hidden" name="Nama Lengkap" id="hidden-name-input"> 
+            <input type="hidden" name="Kelas" id="hidden-class-input"> 
+            <input type="hidden" name="Mata Pelajaran" id="hidden-subject-input">
+            <input type="hidden" name="Hari/Tanggal" id="hidden-date-input">
+            <input type="hidden" name="Skor Akhir" id="final-score-input"> 
+            
+            <button type="submit" id="submit-button">Kirim Jawaban dan Data Diri</button>
+            <p id="result-message" class="hidden"></p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
