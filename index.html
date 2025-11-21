@@ -3,31 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Pilihan Ganda Formspree</title>
+    <title>Halaman Awal - Data Diri</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Uji Pengetahuan Umum</h1>
-        <p>Jawab 5 pertanyaan berikut, masukkan email Anda, dan kirimkan hasilnya.</p>
         
-        <form id="quiz-form" action="https://formspree.io/f/movbqnoz" method="POST">
+        <div id="pre-quiz-form">
+            <h1>Selamat Datang di Ujian Online</h1>
+            <p>Silakan isi data diri Anda sebelum memulai kuis.</p>
             
-            <div id="quiz-container">
-                </div>
-
-            <hr>
-
-            <label for="user-email">Masukkan Email Anda:</label>
-            <input type="email" id="user-email" name="_replyto" placeholder="contoh@email.com" required>
-            
-            <input type="hidden" name="Skor Akhir" id="final-score-input"> 
-            
-            <button type="submit" id="submit-button">Kirim Jawaban</button>
-            <p id="result-message" class="hidden"></p>
-        </form>
+            <form id="info-form">
+                <label for="full-name">Nama Lengkap:</label>
+                <input type="text" id="full-name" required>
+                
+                <label for="class-name">Kelas:</label>
+                <input type="text" id="class-name" required>
+                
+                <label for="subject">Mata Pelajaran:</label>
+                <input type="text" id="subject" required>
+                
+                <label for="date-info">Hari/Tanggal:</label>
+                <input type="date" id="date-info" required> 
+                
+                <button type="submit" id="start-button">Masuk</button>
+            </form>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('info-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            // 1. Ambil nilai input
+            const fullName = document.getElementById('full-name').value;
+            const className = document.getElementById('class-name').value;
+            const subject = document.getElementById('subject').value;
+            const dateInfo = document.getElementById('date-info').value;
+
+            // 2. Simpan nilai ke localStorage
+            localStorage.setItem('kuis_nama', fullName);
+            localStorage.setItem('kuis_kelas', className);
+            localStorage.setItem('kuis_mapel', subject);
+            localStorage.setItem('kuis_tanggal', dateInfo);
+            
+            // 3. Alihkan pengguna ke halaman soal
+            window.location.href = 'soal.html'; 
+        });
+    </script>
 </body>
 </html>
