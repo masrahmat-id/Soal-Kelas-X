@@ -1,175 +1,177 @@
 /* ==================================== */
-/* GLOBAL STYLES & LAYOUT */
+/* 1. GLOBAL & LAYOUT */
 /* ==================================== */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e9ecef; /* Abu-abu muda untuk latar belakang */
-    color: #343a40;
+    /* Font yang bersih dan modern */
+    font-family: 'Poppins', sans-serif; 
+    background-color: #f0f2f5; /* Latar belakang abu-abu terang yang halus */
+    color: #333;
     line-height: 1.6;
     margin: 0;
-    padding: 40px 20px;
+    padding: 50px 20px;
     display: flex;
     justify-content: center;
-    min-height: 100vh; /* Memastikan body mengisi seluruh viewport */
+    min-height: 100vh;
 }
 
 .container {
     background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
+    padding: 40px;
+    border-radius: 16px; /* Sudut lebih membulat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan yang lebih lembut */
+    max-width: 650px;
     width: 100%;
 }
 
 h1, h2 {
-    color: #007bff; /* Biru Primer */
+    color: #0077b6; /* Biru Primer yang elegan */
     text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+p {
+    text-align: center;
+    color: #6c757d;
     margin-bottom: 20px;
 }
 
 hr {
     margin: 30px 0;
     border: 0;
-    border-top: 1px solid #dee2e6; /* Garis pemisah yang tipis */
+    border-top: 1px solid #e0e0e0;
 }
 
-/* Utilitas */
 .hidden {
     display: none !important;
 }
 
 /* ==================================== */
-/* FORM INPUT STYLES (Berlaku untuk Data Diri & Kuis) */
+/* 2. INPUT FIELDS & LABELS (Data Diri & Email) */
 /* ==================================== */
 
 label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 8px;
     font-weight: 600;
+    color: #495057;
+    font-size: 0.95em;
 }
 
 input[type="text"],
 input[type="date"],
 input[type="email"] {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
+    padding: 12px 15px;
     border: 1px solid #ced4da;
-    border-radius: 6px;
+    border-radius: 8px; /* Sudut input yang bagus */
     box-sizing: border-box;
+    font-size: 1em;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+/* Efek fokus (saat user klik input) */
 input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #0077b6;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2); /* Ring focus biru muda */
     outline: none;
 }
 
 /* ==================================== */
-/* QUESTION & OPTION STYLES */
-/* ==================================== */
-
-#info-display {
-    text-align: center;
-    font-size: 1.1em;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    border-left: 5px solid #007bff;
-    margin-bottom: 30px;
-}
-
-.question-block {
-    margin-bottom: 25px;
-    padding: 15px;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    background-color: #f8f9fa; /* Latar belakang soal sedikit berbeda */
-}
-
-.question-block p {
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-}
-
-.option-group label {
-    display: flex; /* Mengatur radio button dan teks agar sejajar */
-    align-items: center;
-    margin: 8px 0;
-    padding: 8px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: normal; /* Menghilangkan bold pada opsi */
-    transition: background-color 0.2s;
-}
-
-.option-group label:hover {
-    background-color: #e9ecef; /* Highlight saat kursor di atas opsi */
-}
-
-.option-group input[type="radio"] {
-    margin-right: 10px;
-    /* Reset lebar default agar tidak mengganggu flex */
-    width: auto; 
-}
-
-
-/* ==================================== */
-/* BUTTON STYLES */
+/* 3. BUTTONS (Submit & Masuk) */
 /* ==================================== */
 
 button {
     display: block;
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1.1em;
     font-weight: 600;
-    margin-top: 25px;
-    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 30px;
+    color: white;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
 }
 
 /* Tombol Masuk/Start */
 button#start-button {
-    background-color: #007bff;
-    color: white;
+    background-color: #0077b6; /* Biru Primer */
+    box-shadow: 0 4px 6px rgba(0, 119, 182, 0.3);
 }
 
 button#start-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-1px);
+    background-color: #005f93;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 119, 182, 0.4);
 }
 
 /* Tombol Kirim Jawaban */
 button#submit-button {
-    background-color: #28a745; /* Hijau Sukses */
-    color: white;
+    background-color: #2a9d8f; /* Hijau Teal yang menarik */
+    box-shadow: 0 4px 6px rgba(42, 157, 143, 0.3);
 }
 
 button#submit-button:hover {
-    background-color: #1e7e34;
-    transform: translateY(-1px);
+    background-color: #217d72;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(42, 157, 143, 0.4);
 }
 
 /* ==================================== */
-/* MESSAGE STYLES */
+/* 4. KUIS & OPSI JAWABAN */
 /* ==================================== */
 
-#result-message {
+#info-display {
     text-align: center;
-    margin-top: 20px;
+    font-size: 1em;
     padding: 15px;
+    background-color: #e0f7fa; /* Latar belakang biru muda */
     border-radius: 8px;
-    background-color: #d4edda; /* Latar belakang hijau muda */
-    color: #155724; /* Teks hijau gelap */
-    border: 1px solid #c3e6cb;
-    font-weight: bold;
+    border-left: 5px solid #0077b6;
+    margin-bottom: 35px;
+    color: #004d7a;
+    font-weight: 500;
 }
+
+.question-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-block p {
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #333;
+    text-align: left;
+}
+
+.option-group label {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: normal;
+    transition: background-color 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+    font-size: 1em;
+}
+
+/* Gaya saat kursor berada di atas opsi */
+.option-group label:hover {
+    background-color: #eaf8ff;
+    border-color: #0077b6;
+}
+
+.option-group input[type="radio
