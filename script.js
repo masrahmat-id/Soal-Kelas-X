@@ -1,4 +1,4 @@
-// Array berisi 5 soal pilihan ganda
+// Data Soal (tetap sama seperti sebelumnya)
 const quizQuestions = [
     {
         question: "Siapakah Presiden pertama Republik Indonesia?",
@@ -27,11 +27,48 @@ const quizQuestions = [
     }
 ];
 
+// --- DOM Elements ---
 const quizContainer = document.getElementById('quiz-container');
-const form = document.getElementById('quiz-form');
-const finalScoreInput = document.getElementById('final-score-input');
+const quizForm = document.getElementById('quiz-form');
 const resultMessage = document.getElementById('result-message');
-const submitButton = document.getElementById('submit-button');
+const infoDisplay = document.getElementById('info-display');
+
+
+// --- Hidden Inputs untuk Formspree ---
+const hiddenNameInput = document.getElementById('hidden-name-input');
+const hiddenClassInput = document.getElementById('hidden-class-input');
+const hiddenSubjectInput = document.getElementById('hidden-subject-input');
+const hiddenDateInput = document.getElementById('hidden-date-input');
+const finalScoreInput = document.getElementById('final-score-input');
+
+
+// =================================================================
+// FUNGSI INISIALISASI HALAMAN SOAL
+// =================================================================
+
+function initializeQuizPage() {
+    // 1. AMBIL data dari localStorage dan masukkan ke hidden fields
+    const fullName = localStorage.getItem('kuis_nama') || 'N/A';
+    const className = localStorage.getItem('kuis_kelas') || 'N/A';
+    const subject = localStorage.getItem('kuis_mapel') || 'N/A';
+    const dateInfo = localStorage.getItem('kuis_tanggal') || 'N/A';
+    
+    // Tampilkan data diri di halaman soal (opsional)
+    infoDisplay.innerHTML = `
+        Nama: <b>${fullName}</b> | Kelas: <b>${className}</b> | Mapel: <b>${subject}</b> | Tanggal: <b>${dateInfo}</b>
+    `;
+
+    // Masukkan ke hidden fields agar terkirim ke Formspree
+    hiddenNameInput.value = fullName;
+    hiddenClassInput.value = className;
+    hiddenSubjectInput.value = subject;
+    hiddenDateInput.value = dateInfo;
+
+    // 2. Render Soal
+    renderQuestions();
+}
+
+// ... (Fungsi renderQuestions dan calculateScore tetap sama)
 
 // Fungsi untuk menampilkan soal
 function renderQuestions() {
@@ -62,11 +99,9 @@ function renderQuestions() {
 function calculateScore() {
     let score = 0;
     quizQuestions.forEach((q, index) => {
-        // Ambil nilai yang dipilih oleh pengguna untuk pertanyaan ini
         const selector = `input[name="question${index}"]:checked`;
         const selectedOption = document.querySelector(selector);
         
-        // Periksa apakah jawaban benar
         if (selectedOption && selectedOption.value === q.answer) {
             score++;
         }
@@ -74,26 +109,23 @@ function calculateScore() {
     return score;
 }
 
-// Event listener saat formulir dikirim
-form.addEventListener('submit', function(event) {
-    // 1. Hitung skor
+// Event listener saat formulir KUIS dikirim
+quizForm.addEventListener('submit', function(event) {
     const totalScore = calculateScore();
     const maxScore = quizQuestions.length;
     
-    // 2. Tampilkan pesan skor kepada pengguna (opsional)
     const scoreMessage = `Anda menjawab ${totalScore} dari ${maxScore} soal dengan benar.`;
     resultMessage.textContent = scoreMessage;
     resultMessage.classList.remove('hidden');
 
-    // 3. Masukkan skor ke dalam hidden field agar dikirim ke email Formspree
     finalScoreInput.value = `${totalScore}/${maxScore} (${scoreMessage})`;
-
-    // Form submission akan dilakukan oleh Formspree setelah ini.
-    // Jika Anda ingin mencegah pengiriman ke Formspree dan hanya menampilkan skor, 
-    // Anda bisa menambahkan event.preventDefault(); di sini, TAPI JANGAN LAKUKAN JIKA MAU DIKIRIM KE EMAIL.
-
-    // Formspree akan mengarahkan pengguna ke halaman "Terima kasih" setelah pengiriman berhasil.
+    
+    // Opsional: Hapus data diri dari localStorage setelah pengiriman
+    localStorage.removeItem('kuis_nama');
+    localStorage.removeItem('kuis_kelas');
+    localStorage.removeItem('kuis_mapel');
+    localStorage.removeItem('kuis_tanggal');
 });
 
-// Jalankan fungsi untuk merender soal saat halaman dimuat
-renderQuestions();
+// Mulai inisialisasi ketika script dimuat
+initializeQuizPage();
